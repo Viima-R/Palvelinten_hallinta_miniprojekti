@@ -1,2 +1,2 @@
 # Palvelinten_hallinta_miniprojekti
-Tietokanta palvelimen luonti palvelinten hallinta miniprojektia varten.
+Creating a database server for a mini project.
