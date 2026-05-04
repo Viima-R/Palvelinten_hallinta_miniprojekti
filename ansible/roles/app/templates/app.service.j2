@@ -1,0 +1,22 @@
+[Unit]
+Description=Flask App (Flaski)
+After=network.target
+
+[Service]
+Type=simple
+
+Environment="postgresql_db={{ postgresql_db }}"
+Environment="postgresql_user={{ postgresql_user }}"
+Environment="postgresql_password={{ postgresql_password }}"
+Environment="postgresql_ip={{ postgresql_ip }}"
+
+ExecStart=/opt/app/venv/bin/python /opt/app/flaski.py
+WorkingDirectory=/opt/app
+
+Restart=always
+RestartSec=3
+
+User=root
+
+[Install]
+WantedBy=multi-user.target
