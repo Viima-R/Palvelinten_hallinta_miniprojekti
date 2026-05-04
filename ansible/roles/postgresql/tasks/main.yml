@@ -1,0 +1,98 @@
+- name: Install PostgreSQL packages
+  ansible.builtin.apt:
+    name:
+      - postgresql-17
+      - postgresql-client-17
+      - python3-psycopg2
+    state: present
+    update_cache: true
+
+- name: Ensure PostgreSQL service is enabled and running
+  ansible.builtin.service:
+    name: postgresql
+    state: started
+    enabled: true
+
+- name: Ensure PostgreSQL user exists
+  community.postgresql.postgresql_user:
+    name: "{{ postgresql_user }}"
+    password: "{{ postgresql_password }}"
+    role_attr_flags: LOGIN
+    state: present
+  become_user: postgres
+
+- name: Ensure PostgreSQL database exists
+  community.postgresql.postgresql_db:
+    name: "{{ postgresql_db }}"
+    owner: "{{ postgresql_user }}"
+    state: present
+  become_user: postgres
+
+- name: Grant all privileges on database
+  community.postgresql.postgresql_privs:
+    login_db: "{{ postgresql_db }}"
+    roles: "{{ postgresql_user }}"
+    type: database
+    privs: ALL
+    state: present
+  become_user: postgres
+  
+- name: Ensure PostgreSQL user exists with role configuration
+  community.postgresql.postgresql_user:
+    name: "{{ postgresql_user }}"
+    password: "{{ postgresql_password }}"
+    no_password_changes: true
+    role_attr_flags: LOGIN
+    state: present
+    configuration:
+      client_encoding: utf8
+      TimeZone: "{{ postgresql_timezone }}"
+  become_user: postgres
+
+- name: Set listen_addresses
+  community.postgresql.postgresql_alter_system:
+    param: listen_addresses
+    value: "{{ postgresql_listen_addresses }}"
+  become_user: postgres
+  notify: Restart PostgreSQL
+
+- name: Set port
+  community.postgresql.postgresql_alter_system:
+    param: port
+    value: "{{ postgresql_port }}"
+  become_user: postgres
+  notify: Restart PostgreSQL
+
+- name: Set timezone
+  community.postgresql.postgresql_alter_system:
+    param: TimeZone
+    value: "{{ postgresql_timezone }}"
+  become_user: postgres
+  notify: Restart PostgreSQL
+
+- name: Set log_timezone
+  community.postgresql.postgresql_alter_system:
+    param: log_timezone
+    value: "{{ postgresql_log_timezone }}"
+  become_user: postgres
+  notify: Restart PostgreSQL
+
+- name: Install nftables
+  ansible.builtin.apt:
+    name: nftables
+    state: present
+
+- name: Copy nftables configuration file
+  ansible.builtin.copy:
+    src: nftables.conf
+    dest: /etc/nftables.conf
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Restart nftables
+
+- name: Ensure nftables service is enabled and running
+  ansible.builtin.service:
+    name: nftables
+    state: started
+    enabled: true

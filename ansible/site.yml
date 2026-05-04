@@ -1,0 +1,5 @@
+- name: Configure PostgreSQL server
+  hosts: db
+  become: true
+  roles:
+    - postgresql
