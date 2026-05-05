@@ -8,8 +8,23 @@ Operating system used Debian 13.4.0.
 
 1) On your master machine you need to:
 - install ssh, ansible and git
+
+```
+sudo apt update
+sudo apt install -y openssh-server git ansible
+```
+
 - generate ssh key
-- copy ssh public key to your slave machines
+
+```
+ssh-keygen -t ed25519
+```
+
+- copy ssh public key to your slave machines, make sure you copy the .pub key
+
+```
+ssh-copy-id user@slave-machine ~/.ssh/id_ed25519.pub
+```
 
 2) On your slave machine you need to:
 - install ssh
@@ -48,6 +63,15 @@ https://www.youtube.com/watch?v=BkIeHgBWyX8
 Description on what each role does.
 
 ## PostgreSQL
+- Installs PostgreSQL packages and makes sure it is running
+- Ensures that the user, database and required privileges exist
+- Sets listen addresses and ports
+- Sets a timezone for the database and logs
+- Adds a copy of the configuration file pg_hba.conf
+- Installs nftables and makes sure it is running
+- Adds a copy of the nftables configuration file
+
+End result is that it sets up a working PostgreSQL server with the required database configuration, local-only listening, timezone settings and firewall rules.
 
 ## App
 - Installs required packages for Python and virtual environments
