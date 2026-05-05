@@ -1,4 +1,4 @@
-# Setting up a database server and a server for Flask web framework using Ansible
+# Setting up a database server and a server where a Flask application runs that connects to the database using Ansible
 
 This work is part of Haaga-Helia university of applied sciences Server Management course.
 
