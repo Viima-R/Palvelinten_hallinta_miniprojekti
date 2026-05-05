@@ -57,3 +57,5 @@ Description on what each role does.
 - Creates a service out of the application script (flaski.py), using a template.
 - Enables and starts the application as a systemd service.
 - Triggers handlers to reload the service if changes made.
+
+End result is it deploys a Flask application, configures it as a systemd service with a virtual environment and required dependencies, ensures it's enabled and running and it connects to the PostgreSQL database.
