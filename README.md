@@ -7,9 +7,7 @@ Operating system used Debian 13.4.0.
 # Install guide
 
 1) On your master machine you need to:
-- install ssh
-- install ansible
-- install git
+- install ssh, ansible and git
 - generate ssh key
 - copy ssh public key to your slave machines
 
