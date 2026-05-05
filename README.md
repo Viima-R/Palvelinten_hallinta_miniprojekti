@@ -32,7 +32,7 @@ host    db_name        db_user            192.168.1.69/32        scram-sha-256
 Dont remove the /32!
 
 
-Run ansible playbook in the ansible directory of the cloned repository.
+5) Run ansible playbook in the ansible directory of the cloned repository.
 
 ```
 ansible-playbook -i hosts.ini site.yml -K
