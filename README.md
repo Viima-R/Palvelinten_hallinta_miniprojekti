@@ -25,7 +25,7 @@ git clone git@github.com:Viima-R/Palvelinten_hallinta_miniprojekti.git
 - Modify hosts.ini to match the user@ip of your slave machines
 - Modify group_vars/all.yml you need to change "postgresql_ip: "192.168.1.235"" to match your database server ip.
 - You may also change other variables in group_vars/all.yml like database name, password and timezones.
-- Modify roles/postgresql/files/pg_hba.conf you need to change the line in the bottom row to match: your database name, database user, and app server ip. Example:
+- Modify roles/postgresql/files/pg_hba.conf you need to change the line in the bottom row to match: your database name, database user, and app server ip.
 ```
 host    db_name        db_user            192.168.1.69/32        scram-sha-256
 ```
