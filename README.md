@@ -50,3 +50,10 @@ Description on what each role does.
 ## PostgreSQL
 
 ## App
+- Installs required packages for Python and virtual environments
+- Creates a dedicated application directory at /opt/app
+- Sets up a virtual environment (venv)
+- Install required Python libraries inside venv
+- Creates a service out of the application script (flaski.py), using a template.
+- Enables and starts the application as a systemd service.
+- Triggers handlers to reload the service if changes made.
