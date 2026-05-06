@@ -7,6 +7,7 @@ Operating system used Debian 13.4.0.
 # Install guide
 
 1) On your master machine you need to:
+
 - install ssh, ansible and git
 
 ```
@@ -20,23 +21,25 @@ sudo apt install -y openssh-server git ansible
 ssh-keygen -t ed25519
 ```
 
-- copy ssh public key to your slave machines, make sure you copy the .pub key
+2) On your slave machine you need to:
+
+- install ssh
+- have sudo access
+
+3) copy ssh public key to your slave machines, make sure you copy the .pub key
 
 ```
 ssh-copy-id user@slave-machine ~/.ssh/id_ed25519.pub
 ```
 
-2) On your slave machine you need to:
-- install ssh
-- have sudo access
-
-3) Clone this repository to your master machine.
+4) Clone this repository to your master machine.
 
 ```
 git clone git@github.com:Viima-R/Palvelinten_hallinta_miniprojekti.git
 ```
 
-4) Make following changes in the repository you cloned.
+5) Make following changes in the repository you cloned.
+
 - Modify hosts.ini to match the user@ip of your slave machines
 - Modify group_vars/all.yml you need to change "postgresql_ip: "192.168.1.235"" to match your database server ip.
 - You may also change other variables in group_vars/all.yml like database name, password and timezones.
@@ -47,13 +50,13 @@ host    db_name        db_user            192.168.1.69/32        scram-sha-256
 Dont remove the /32!
 
 
-5) Run ansible playbook in the ansible directory of the cloned repository.
+6) Run ansible playbook in the ansible directory of the cloned repository.
 
 ```
 ansible-playbook -i hosts.ini site.yml -K
 ```
 
-6) Test that everything works
+7) Test that everything works
 
 In the browser of your app server enter.
 ```
