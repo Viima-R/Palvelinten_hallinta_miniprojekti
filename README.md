@@ -29,7 +29,7 @@ ssh-keygen -t ed25519
 3) copy ssh public key to your slave machines, make sure you copy the .pub key
 
 ```
-ssh-copy-id user@slave-machine ~/.ssh/id_ed25519.pub
+ssh-copy-id -i ~/.ssh/id_ed25519.pub user@slave-machine
 ```
 
 4) Clone this repository to your master machine.
