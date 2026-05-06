@@ -2,7 +2,7 @@
 postgresql_version: "17"
 postgresql_db: "projekti"
 postgresql_user: "mini"
-postgresql_password: "D3adline"
+postgresql_password: "password"
 postgresql_ip: "192.168.1.124"
 postgresql_listen_addresses: "*"
 postgresql_port: 5432
