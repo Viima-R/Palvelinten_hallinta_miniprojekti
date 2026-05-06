@@ -53,6 +53,18 @@ Dont remove the /32!
 ansible-playbook -i hosts.ini site.yml -K
 ```
 
+6) Test that everything works
+
+In the browser of your app server enter.
+```
+http://127.0.0.1:5000
+```
+This shows if your webserver is up, after you've confirmed your webserver is up enter.
+```
+http://127.0.0.1:5000/data
+```
+This shows if your app connects to the database, it displays the configured time in the database.
+
 ## Demo video (steps 1-4 already done)
 
 https://www.youtube.com/watch?v=BkIeHgBWyX8
@@ -83,3 +95,12 @@ End result is that it sets up a working PostgreSQL server with the required data
 - Triggers handlers to reload the service if changes made.
 
 End result is it deploys a Flask application, configures it as a systemd service with a virtual environment and required dependencies, ensures it's enabled and running and it connects to the PostgreSQL database.
+
+
+
+# Sources
+https://terokarvinen.com/
+https://docs.ansible.com/projects/ansible/latest/index.html
+
+## Acknowledgements
+ChatGPT (OpenAI GPT-5.3) was asked for assistance in code suggestions and explanations.
