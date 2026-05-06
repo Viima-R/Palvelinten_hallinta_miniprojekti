@@ -99,6 +99,7 @@ End result is it deploys a Flask application, configures it as a systemd service
 
 
 # Sources
+
 - https://terokarvinen.com/
 - https://docs.ansible.com/projects/ansible/latest/index.html
 
