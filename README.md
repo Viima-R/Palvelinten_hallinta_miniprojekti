@@ -99,8 +99,8 @@ End result is it deploys a Flask application, configures it as a systemd service
 
 
 # Sources
-https://terokarvinen.com/
-https://docs.ansible.com/projects/ansible/latest/index.html
+- https://terokarvinen.com/
+- https://docs.ansible.com/projects/ansible/latest/index.html
 
 ## Acknowledgements
 ChatGPT (OpenAI GPT-5.3) was asked for assistance in code suggestions and explanations.
